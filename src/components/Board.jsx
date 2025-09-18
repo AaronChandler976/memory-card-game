@@ -2,7 +2,7 @@ import Card from "./Card";
 
 function Board({ pokemonList, handleClickCard }) {
   return (
-    <div class="board">
+    <div className="board">
       {pokemonList.map((pokemon) => {
         <Card pokemon={pokemon} handleClickCard={handleClickCard} />;
       })}

@@ -4,7 +4,7 @@ function Score({ score }) {
   const numCards = NUM_CARDS;
 
   return (
-    <h2 class="score">
+    <h2 className="score">
       Score: {score}/{numCards}
     </h2>
   );

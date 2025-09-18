@@ -61,7 +61,7 @@ function Game() {
       ) : (
         <Board pokemonList={pokemonList} handleClickCard={handleClickCard} />
       )}
-      <div class="sidebar">
+      <div className="sidebar">
         <Score score={selectedIds.length} />
         {isGameOver && <button onClick={handleClickNewGame}>New Game</button>}
       </div>
