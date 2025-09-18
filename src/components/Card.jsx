@@ -1,7 +1,9 @@
-function Card({ pokemon, clickCard }) {
+function Card({ pokemon, handleClickCard }) {
+  const imageUrl = pokemon.sprites.front_default;
+
   return (
-    <div class="card" onclick={clickCard}>
-      <img src={pokemon.url} alt={pokemon.name} />
+    <div class="card" onclick={() => handleClickCard(pokemon.id)}>
+      <img src={imageUrl} alt={pokemon.name} />
       <h2>{pokemon.name}</h2>
     </div>
   );
