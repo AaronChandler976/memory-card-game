@@ -3,7 +3,7 @@ import Board from "./Board";
 import Score from "./Score";
 import Loading from "./Loading";
 import { NUM_CARDS, API_BASE_URL } from "../utils/game-constants";
-import { getNewPokemonId } from "../utils/utils";
+import { getNewPokemonId, shuffleArray } from "../utils/utils";
 import "./styles/Game.css";
 
 function Game() {
@@ -37,6 +37,7 @@ function Game() {
     }
     const newSelectedIds = [...selectedIds, selectedId];
     setSelectedIds(newSelectedIds);
+    shufflePokemon();
   }
 
   function handleClickNewGame() {
@@ -70,7 +71,12 @@ function Game() {
       })
     );
     return newPokemonList;
-  };
+  }
+
+  function shufflePokemon() {
+    const shuffledPokemon = shuffleArray(pokemonList);
+    setPokemonList(shuffledPokemon);
+  }
 
   return (
     <div className="game">

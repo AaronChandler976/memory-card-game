@@ -2,7 +2,6 @@ import { CARD_STATUS } from "../utils/game-constants";
 import "./styles/Card.css";
 
 function Card({ pokemon, handleClickCard, status }) {
-  console.log(status);
   return (
     <div
       className={"card" + (status === CARD_STATUS.NONE ? "" : " " + status)}
