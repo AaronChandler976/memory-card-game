@@ -30,7 +30,7 @@ function Game() {
   }, []);
 
   function handleClickCard(selectedId) {
-    if (!isGameOver) return;
+    if (isGameOver) return;
     if (selectedIds.includes(selectedId)) {
       setIsGameOver(true);
       return;
@@ -40,12 +40,18 @@ function Game() {
   }
 
   function handleClickNewGame() {
-    setPokemonList(fetchPokemon());
+    setIsLoading(true);
+    async function startFetching() {
+      const newPokemonList = await fetchPokemon();
+      setPokemonList(newPokemonList);
+      setIsLoading(false);
+    }
+    startFetching();
     setSelectedIds([]);
     setIsGameOver(false);
   }
 
-  const fetchPokemon = async () => {
+  async function fetchPokemon() {
     const newPokemonIds = [];
     while (newPokemonIds.length < NUM_CARDS) {
       const newId = getNewPokemonId(newPokemonIds);
@@ -71,7 +77,12 @@ function Game() {
       {isLoading ? (
         <Loading />
       ) : (
-        <Board pokemonList={pokemonList} handleClickCard={handleClickCard} />
+        <Board
+          pokemonList={pokemonList}
+          handleClickCard={handleClickCard}
+          isGameOver={isGameOver}
+          selectedIds={selectedIds}
+        />
       )}
       <div className="sidebar">
         <Score score={selectedIds.length} />

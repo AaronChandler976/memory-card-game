@@ -8,9 +8,18 @@
   align-items: center;
   padding: 1rem;
   border: 1px solid black;
+  border-radius: 5px;
 }
 
 .card span {
   text-align: center;
   height: 3rem;
+}
+
+.card.correct {
+  background-color: green;
+}
+
+.card.incorrect {
+  background-color: red;
 }
