@@ -65,7 +65,6 @@ function Game() {
     return newPokemonList;
   };
 
-  console.log(pokemonList);
   return (
     <div>
       {isLoading ? (
