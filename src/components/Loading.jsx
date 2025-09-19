@@ -1,5 +1,7 @@
+import "./styles/Loading.css";
+
 function Loading() {
-  return <h1>Loading...</h1>;
+  return <div className="loading">Loading...</div>;
 }
 
 export default Loading;

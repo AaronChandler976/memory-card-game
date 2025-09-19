@@ -1,0 +1,11 @@
+@import "./Board.css";
+
+.loading {
+  width: var(--board-width);
+  height: var(--board-width);
+  border: var(--board-border-width) solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

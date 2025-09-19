@@ -64,7 +64,7 @@ function Game() {
         const responseJson = await response.json();
         const newPokemon = {
           id: responseJson.id,
-          name: responseJson.name,
+          name: responseJson.name.split("-")[0],
           url: responseJson.sprites.front_default,
         };
         return newPokemon;
