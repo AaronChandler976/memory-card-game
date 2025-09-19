@@ -1,4 +1,4 @@
-import { NUM_CARDS } from "../utils/game-rules";
+import { NUM_CARDS } from "../utils/game-constants";
 
 function Score({ score }) {
   const numCards = NUM_CARDS;

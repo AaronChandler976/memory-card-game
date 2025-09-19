@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import Board from "./Board";
 import Score from "./Score";
 import Loading from "./Loading";
-import { NUM_CARDS } from "../utils/game-rules";
-import { getNewRandomId } from "../utils/utils";
+import { NUM_CARDS, API_BASE_URL } from "../utils/game-constants";
+import { getNewPokemonId } from "../utils/utils";
 
 function Game() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -12,8 +12,20 @@ function Game() {
   const [isGameOver, setIsGameOver] = useState(false);
 
   useEffect(() => {
-    setPokemonList(getPokemonList());
-    setIsLoading(false);
+    let ignore = false;
+
+    async function startFetching() {
+      const newPokemonList = await fetchPokemon();
+      if (!ignore) {
+        setPokemonList(newPokemonList);
+        setIsLoading(false);
+      }
+    }
+    startFetching();
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   function handleClickCard(selectedId) {
@@ -27,33 +39,33 @@ function Game() {
   }
 
   function handleClickNewGame() {
-    setPokemonList(getPokemonList());
+    setPokemonList(fetchPokemon());
     setSelectedIds([]);
     setIsGameOver(false);
   }
 
-  function getPokemonList() {
-    let newPokemonList = [];
-    async function getPokemon() {
-      try {
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${getNewRandomId(newPokemonList)}/`
-        );
-        if (!response.ok) {
-          throw new Error(`Error getting pokemon. Status: ${response.status}`);
-        }
-        return await response.json();
-      } catch (error) {
-        console.error(error);
-      }
+  const fetchPokemon = async () => {
+    const newPokemonIds = [];
+    while (newPokemonIds.length < NUM_CARDS) {
+      const newId = getNewPokemonId(newPokemonIds);
+      newPokemonIds.push(newId);
     }
-    while (newPokemonList.length < NUM_CARDS) {
-      const pokemon = getPokemon();
-      if (pokemon) newPokemonList.push(pokemon);
-    }
+    const newPokemonList = await Promise.all(
+      newPokemonIds.map(async (id) => {
+        const response = await fetch(`${API_BASE_URL}/${id}`);
+        const responseJson = await response.json();
+        const newPokemon = {
+          id: responseJson.id,
+          name: responseJson.name,
+          url: responseJson.sprites.front_default,
+        };
+        return newPokemon;
+      })
+    );
     return newPokemonList;
-  }
+  };
 
+  console.log(pokemonList);
   return (
     <div>
       {isLoading ? (

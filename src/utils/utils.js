@@ -1,11 +1,11 @@
-import { MAX_ID } from "./game-rules";
+import { MAX_ID } from "./game-constants";
 
-function getNewRandomId(pokemonList) {
-  let id;
+function getNewPokemonId(excludeIdsList) {
+  let newId;
   do {
-    id = Math.floor(Math.random() * MAX_ID);
-  } while (pokemonList.some((pokemon) => id === pokemon.id));
-  return id;
+    newId = Math.floor(Math.random() * MAX_ID) + 1;
+  } while (excludeIdsList.some((id) => newId === id));
+  return newId;
 }
 
-export { getNewRandomId };
+export { getNewPokemonId };
