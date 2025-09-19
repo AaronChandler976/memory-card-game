@@ -1,0 +1,17 @@
+.board {
+  --board-padding: 5px;
+  --board-border-width: 1px;
+  --card-spacing: var(--board-padding);
+  --card-width: 10rem;
+
+  width: calc(
+    4 * var(--card-width) + 2 * var(--board-padding) + 2 *
+      var(--board-border-width) + 3 * var(--card-spacing)
+  );
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: var(--board-padding);
+  display: flex;
+  gap: var(--card-spacing);
+  flex-wrap: wrap;
+}

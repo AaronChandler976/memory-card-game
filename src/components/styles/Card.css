@@ -1,0 +1,16 @@
+@import "./Board.css";
+
+.card {
+  width: var(--card-width);
+  height: var(--card-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+.card span {
+  text-align: center;
+  height: 3rem;
+}
