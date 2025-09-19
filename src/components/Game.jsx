@@ -12,6 +12,8 @@ function Game() {
   const [selectedIds, setSelectedIds] = useState([]);
   const [wrongSelectionId, setWrongSelectionId] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [currentStreak, setCurrentStreak] = useState(0);
+  const [bestStreak, setBestStreak] = useState(0);
 
   useEffect(() => {
     let ignore = false;
@@ -39,6 +41,9 @@ function Game() {
     }
     const newSelectedIds = [...selectedIds, selectedId];
     setSelectedIds(newSelectedIds);
+    const newStreak = currentStreak + 1;
+    setCurrentStreak(newStreak);
+    if (newStreak > bestStreak) setBestStreak(newStreak);
     shufflePokemon();
   }
 
@@ -52,6 +57,7 @@ function Game() {
     startFetching();
     setSelectedIds([]);
     setWrongSelectionId(null);
+    setCurrentStreak(0);
     setIsGameOver(false);
   }
 
@@ -95,7 +101,11 @@ function Game() {
         />
       )}
       <div className="sidebar">
-        <Score score={selectedIds.length} />
+        <Score
+          score={selectedIds.length}
+          currentStreak={currentStreak}
+          bestStreak={bestStreak}
+        />
         {isGameOver && <button onClick={handleClickNewGame}>New Game</button>}
       </div>
     </div>

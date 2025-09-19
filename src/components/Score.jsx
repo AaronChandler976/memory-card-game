@@ -1,7 +1,7 @@
 import { NUM_CARDS } from "../utils/game-constants";
 import "./styles/Score.css";
 
-function Score({ score }) {
+function Score({ score, currentStreak, bestStreak }) {
   const numCards = NUM_CARDS;
 
   return (
@@ -12,8 +12,8 @@ function Score({ score }) {
         </span>
       </div>
       <div className="score-info">
-        <span>Current Streak: </span>
-        <span>Best: </span>
+        <span>Score: {currentStreak}</span>
+        <span>Highscore: {bestStreak}</span>
       </div>
     </div>
   );

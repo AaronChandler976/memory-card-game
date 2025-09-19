@@ -11,5 +11,5 @@
 .sidebar {
   border: 1px solid black;
   border-radius: var(--game-border-radius);
-  width: var(--card-width);
+  width: calc(1.5*var(--card-width));
 }
