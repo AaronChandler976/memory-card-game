@@ -4,7 +4,7 @@
   width: var(--board-width);
   height: var(--board-width);
   border: var(--board-border-width) solid black;
-  border-radius: 5px;
+  border-radius: var(--game-border-radius);
   display: flex;
   justify-content: center;
   align-items: center;

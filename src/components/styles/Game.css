@@ -1,5 +1,14 @@
+@import "./Board.css";
+
 .game {
   display: flex;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: var(--game-border-radius);
+  padding: var(--board-padding);
+  gap: var(--card-spacing);
+}
+
+.sidebar {
+  border: 1px solid black;
+  border-radius: var(--game-border-radius);
 }

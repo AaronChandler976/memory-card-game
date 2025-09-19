@@ -8,12 +8,11 @@
   align-items: center;
   padding: 1rem;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: var(--game-border-radius);
 }
 
 .card span {
   text-align: center;
-  height: 3rem;
 }
 
 .card.correct {

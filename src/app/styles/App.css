@@ -1,5 +1,12 @@
+@font-face {
+  font-family: "VP Pixel";
+  src: url("../../assets/fonts/Pokemon_Pixel_Font_Regular/");
+}
+
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "VP Pixel", monospace;
+  overflow: scroll;
 }
