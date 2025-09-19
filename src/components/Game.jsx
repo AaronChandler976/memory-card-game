@@ -4,6 +4,7 @@ import Score from "./Score";
 import Loading from "./Loading";
 import { NUM_CARDS, API_BASE_URL } from "../utils/game-constants";
 import { getNewPokemonId } from "../utils/utils";
+import "./styles/Game.css";
 
 function Game() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -66,7 +67,7 @@ function Game() {
   };
 
   return (
-    <div>
+    <div className="game">
       {isLoading ? (
         <Loading />
       ) : (
