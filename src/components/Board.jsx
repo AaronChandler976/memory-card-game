@@ -1,11 +1,11 @@
 import { NUM_CARDS, CARD_STATUS } from "../utils/game-constants";
 import Card from "./Card";
 
-function Board({ pokemonList, handleClickCard, isGameOver, selectedIds }) {
+function Board({ pokemonList, handleClickCard, isGameOver, selectedIds, wrongSelectionId }) {
   function getCardStatus(id) {
     if (!isGameOver) return CARD_STATUS.NONE;
     if (selectedIds.length === NUM_CARDS) return CARD_STATUS.CORRECT;
-    if (id === selectedIds.at(-1)) return CARD_STATUS.INCORRECT;
+    if (id === wrongSelectionId) return CARD_STATUS.INCORRECT;
     if (selectedIds.includes(id)) return CARD_STATUS.CORRECT;
     return CARD_STATUS.NONE;
   }

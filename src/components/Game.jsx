@@ -10,6 +10,7 @@ function Game() {
   const [pokemonList, setPokemonList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedIds, setSelectedIds] = useState([]);
+  const [wrongSelectionId, setWrongSelectionId] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ function Game() {
     if (isGameOver) return;
     if (selectedIds.includes(selectedId)) {
       setIsGameOver(true);
+      setWrongSelectionId(selectedId);
       return;
     }
     const newSelectedIds = [...selectedIds, selectedId];
@@ -49,6 +51,7 @@ function Game() {
     }
     startFetching();
     setSelectedIds([]);
+    setWrongSelectionId(null);
     setIsGameOver(false);
   }
 
@@ -88,6 +91,7 @@ function Game() {
           handleClickCard={handleClickCard}
           isGameOver={isGameOver}
           selectedIds={selectedIds}
+          wrongSelectionId={wrongSelectionId}
         />
       )}
       <div className="sidebar">
