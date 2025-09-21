@@ -1,25 +1,175 @@
 @import "./Board.css";
 
+.card-wrapper {
+  perspective: 1000px;
+}
+
 .card {
   width: var(--card-width);
   height: var(--card-width);
+  transform-style: preserve-3d;
+}
+
+.card:not(.active) .card-front {
+  cursor: default;
+}
+
+.card-front {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 1rem;
-  border: 1px solid black;
-  border-radius: var(--game-border-radius);
   font-size: 1.5rem;
+  cursor: pointer;
+  background-color: #fffcf2;
+}
+
+.card-front,
+.card-back {
+  clip-path: var(--corner-path);
 }
 
 .card span {
   text-align: center;
+  margin-top: -0.5rem;
 }
 
-.card.correct {
-  background-color: green;
+.card .pixel-border-inner {
+  position: absolute;
+  background-color: #fffcf2;
+  padding: 0;
 }
 
-.card.incorrect {
-  background-color: red;
+.card-front.pixel-border-inner::before {
+  background-color: #fffcf2;
+}
+
+.card-front.pixel-border-inner::after {
+  background-color: #c9c9c9;
+}
+
+.card.correct .card-front,
+.card.correct .card-front::before {
+  background-color: #6BB7D5;
+}
+
+.card.correct .card-front::after {
+  background-color: #3F6D7F;
+}
+
+.card.incorrect .card-front,
+.card.incorrect .card-front::before {
+  background-color: #cf4444;
+}
+
+.card.incorrect .card-front::after {
+  background-color: #6a3535;
+}
+
+/* HOVER EFFECTS */
+.card-wrapper:has(> .active):hover .card-front {
+  background-color: #ffdb92;
+}
+
+.card-wrapper:has(> .active):hover .card-front::before {
+  background-color: #fde5b3;
+}
+
+.card-wrapper:has(> .active):hover .card-front::after {
+  background-color: #b19866;
+}
+
+.card-wrapper:has(> .active):hover {
+  transform: translate(-4px, -4px);
+  filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.5));
+}
+
+/* Must remove idle animation during click animation*/
+.card-wrapper:has(> .active):hover
+  .card:not(.animate-correct, .animate-incorrect)
+  .card-front
+  img {
+  animation-name: idle;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(1, 0.01, 0, 1);
+}
+
+@keyframes idle {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/*Flip Styles*/
+.card {
+  transition: transform 0.3s;
+  transform-style: preserve-3d;
+  position: relative;
+  transform: rotateY(0);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+/* status animations*/
+.card.animate-correct .card-front > img {
+  animation-name: bounce;
+  animation-duration: 0.4s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(1, 0.01, 0, 1);
+}
+
+.card.animate-incorrect .card-front > img {
+  animation-name: shake;
+  animation-duration: 0.2s;
+  animation-iteration-count: 2;
+  animation-timing-function: cubic-bezier(1, 0.01, 0, 1);
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

@@ -1,15 +1,47 @@
-@import "./Board.css";
+@import "./pixel-border.css";
 
 .game {
+  --game-background-color: #cc0000;
+  --game-highlight-color: #ff7575;
+  --game-shadow-color: #850000;
+
   display: flex;
-  border: 1px solid black;
-  border-radius: var(--game-border-radius);
-  padding: var(--board-padding);
-  gap: var(--card-spacing);
+  gap: calc(var(--border-width) + var(--inner-padding));
 }
 
 .sidebar {
-  border: 1px solid black;
-  border-radius: var(--game-border-radius);
-  width: calc(1.5*var(--card-width));
+  width: calc(1.5 * var(--card-width));
+  display: flex;
+  flex-direction: column;
+}
+
+.pixel-border-outer::after {
+  content: "";
+  position: absolute;
+  clip-path: var(--border-path);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #19180a;
+  display: block;
+  pointer-events: none;
+}
+
+.pixel-border-middle {
+  background-color: var(--game-background-color);
+}
+
+.pixel-border-middle::before {
+  background-color: var(--game-highlight-color);
+}
+
+.pixel-border-middle::after {
+  background-color: var(--game-shadow-color);
+}
+
+.game-over-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }

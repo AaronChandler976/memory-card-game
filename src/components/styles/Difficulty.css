@@ -1,0 +1,69 @@
+.difficulty-wrapper {
+  margin: 0.5rem 0;
+}
+
+.difficulty-selector {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  --checkbox-background-color: #c2c2c2;
+  --checkbox-highlight-color: #dadada;
+  --checkbox-shadow-color: #a1a1a1;
+}
+
+.difficulty-selector.selected {
+  --checkbox-background-color: var(--game-background-color);
+  --checkbox-highlight-color: var(--game-highlight-color);
+  --checkbox-shadow-color: var(--game-shadow-color);
+}
+
+.difficulty-selector .checkbox {
+  --checkbox-convex: linear-gradient(
+      180deg,
+      var(--checkbox-highlight-color) 0rem,
+      var(--checkbox-highlight-color) var(--border-width),
+      transparent var(--border-width),
+      transparent calc(100% - var(--border-width)),
+      var(--checkbox-shadow-color) calc(100% - var(--border-width))
+    ),
+    linear-gradient(
+      90deg,
+      var(--checkbox-highlight-color) 0rem,
+      var(--checkbox-highlight-color) var(--border-width),
+      transparent var(--border-width),
+      transparent calc(100% - var(--border-width)),
+      var(--checkbox-shadow-color) calc(100% - var(--border-width))
+    ),
+    var(--checkbox-background-color);
+
+  width: 1rem;
+  height: 1rem;
+  background: var(--checkbox-convex);
+}
+
+.difficulty-selector:not(.selected):hover .checkbox {
+  --checkbox-background-color: #afafaf;
+  --checkbox-concave: linear-gradient(
+      180deg,
+      var(--checkbox-shadow-color) 0rem,
+      var(--checkbox-shadow-color) var(--border-width),
+      transparent var(--border-width),
+      transparent calc(100% - var(--border-width)),
+      var(--checkbox-highlight-color) calc(100% - var(--border-width))
+    ),
+    linear-gradient(
+      90deg,
+      var(--checkbox-shadow-color) 0rem,
+      var(--checkbox-shadow-color) var(--border-width),
+      transparent var(--border-width),
+      transparent calc(100% - var(--border-width)),
+      var(--checkbox-highlight-color) calc(100% - var(--border-width))
+    ),
+    var(--checkbox-background-color);
+
+  background: var(--checkbox-concave);
+}

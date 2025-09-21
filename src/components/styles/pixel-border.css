@@ -1,0 +1,136 @@
+:root,
+::before,
+::after {
+  --border-width: 4px;
+}
+
+.pixel-border-outer {
+  --inner-padding: 1rem;
+  --corner-path: polygon(
+    0px calc(100% - var(--border-width)),
+    var(--border-width) calc(100% - var(--border-width)),
+    var(--border-width) 100%,
+    calc(100% - var(--border-width)) 100%,
+    calc(100% - var(--border-width)) calc(100% - var(--border-width)),
+    100% calc(100% - var(--border-width)),
+    100% var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width)) 0px,
+    var(--border-width) 0px,
+    var(--border-width) var(--border-width),
+    0px var(--border-width)
+  );
+  --border-path: polygon(
+    /* outside */ 0px calc(100% - var(--border-width)),
+    var(--border-width) calc(100% - var(--border-width)),
+    var(--border-width) 100%,
+    calc(100% - var(--border-width)) 100%,
+    calc(100% - var(--border-width)) calc(100% - var(--border-width)),
+    100% calc(100% - var(--border-width)),
+    100% var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width)) 0px,
+    var(--border-width) 0px,
+    var(--border-width) var(--border-width),
+    0px var(--border-width),
+    /* inside */ 0px 50%,
+    var(--border-width) 50%,
+    var(--border-width) calc(2 * var(--border-width)),
+    calc(2 * var(--border-width)) calc(2 * var(--border-width)),
+    calc(2 * var(--border-width)) var(--border-width),
+    calc(100% - 2 * var(--border-width)) var(--border-width),
+    calc(100% - 2 * var(--border-width)) calc(2 * var(--border-width)),
+    calc(100% - var(--border-width)) calc(2 * var(--border-width)),
+    calc(100% - var(--border-width)) calc(100% - 2 * var(--border-width)),
+    calc(100% - 2 * var(--border-width)) calc(100% - 2 * var(--border-width)),
+    calc(100% - 2 * var(--border-width)) calc(100% - var(--border-width)),
+    calc(2 * var(--border-width)) calc(100% - var(--border-width)),
+    calc(2 * var(--border-width)) calc(100% - 2 * var(--border-width)),
+    var(--border-width) calc(100% - 2 * var(--border-width)),
+    var(--border-width) 50%,
+    0px 50%
+  );
+  --highlight-path: polygon(
+    0px var(--border-width),
+    0px calc(100% - var(--border-width)),
+    var(--border-width) calc(100% - var(--border-width)),
+    var(--border-width) var(--border-width),
+    0px var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width)) 0px,
+    var(--border-width) 0px,
+    var(--border-width) var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width)
+  );
+  --shadow-path: polygon(
+    var(--border-width) calc(100% - var(--border-width)),
+    var(--border-width) 100%,
+    calc(100% - var(--border-width)) 100%,
+    calc(100% - var(--border-width)) calc(100% - var(--border-width)),
+    var(--border-width) calc(100% - var(--border-width)),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width)) calc(100% - var(--border-width)),
+    100% calc(100% - var(--border-width)),
+    100% var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width)
+  );
+}
+
+.pixel-border-outer,
+.pixel-border-middle,
+.pixel-border-inner {
+  clip-path: var(--corner-path);
+  position: relative;
+  border: var(--border-width) solid transparent;
+}
+
+.pixel-border-outer::after,
+.pixel-border-middle::after,
+.pixel-border-middle::before,
+.pixel-border-inner::before,
+.pixel-border-inner::after {
+  margin: calc(-1 * var(--border-width));
+}
+
+.pixel-border-outer::after {
+  content: "";
+  position: absolute;
+  clip-path: var(--border-path);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.pixel-border-middle::before,
+.pixel-border-inner::before {
+  content: "";
+  position: absolute;
+  clip-path: var(--highlight-path);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.pixel-border-middle::after,
+.pixel-border-inner::after {
+  content: "";
+  position: absolute;
+  clip-path: var(--shadow-path);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.pixel-border-middle,
+.pixel-border-inner {
+  padding: calc(var(--border-width) + var(--inner-padding));
+}

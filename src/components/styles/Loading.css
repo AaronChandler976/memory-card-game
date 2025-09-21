@@ -1,11 +1,39 @@
-@import "./Board.css";
+.loading.difficulty-1 {
+  --number-columns: 2;
+  --number-rows: 3;
+}
+
+.loading.difficulty-2 {
+  --number-columns: 3;
+  --number-rows: 3;
+}
+
+.loading.difficulty-3 {
+  --number-columns: 4;
+  --number-rows: 3;
+}
+
+.loading.difficulty-4 {
+  --number-columns: 4;
+  --number-rows: 4;
+}
 
 .loading {
-  width: var(--board-width);
-  height: var(--board-width);
-  border: var(--board-border-width) solid black;
-  border-radius: var(--game-border-radius);
+  --board-content-width: calc(
+    var(--number-columns) * var(--card-width) + (var(--number-columns) - 1) *
+      var(--card-spacing) + 2 * var(--board-padding) + 2 *
+      var(--pixel-border-width)
+  );
+  --board-content-height: calc(
+    var(--number-rows) * var(--card-width) + (var(--number-rows) - 1) *
+      var(--card-spacing) + 2 * var(--board-padding) + 2 *
+      var(--pixel-border-width)
+  );
+  width: var(--board-content-width);
+  height: var(--board-content-height);
+  padding: var(--board-padding);
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 3rem;
 }

@@ -1,5 +1,5 @@
 import PokemonLogo from "../assets/images/International_Pokémon_logo.svg";
-import "../styles/Header.css";
+import "./styles/Header.css";
 
 function Header() {
   return (
@@ -11,4 +11,5 @@ function Header() {
     </header>
   );
 }
+
 export default Header;

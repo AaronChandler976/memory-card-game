@@ -1,0 +1,77 @@
+button {
+  background-color: var(--game-background-color);
+  border: var(--border-width) solid transparent;
+  position: relative;
+  padding: 0.5rem 0 0.65rem;
+  font-size: 1.6rem;
+  width: 100%;
+  color: #fffcf2;
+  cursor: pointer;
+}
+
+button span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1rem;
+}
+
+button::before,
+button::after {
+  margin: calc(-1 * var(--border-width));
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  clip-path: polygon(
+    0 0,
+    0 calc(100% - var(--border-width)),
+    var(--border-width) calc(100% - var(--border-width)),
+    var(--border-width) var(--border-width),
+    100% var(--border-width),
+    100% 0,
+    0 0
+  );
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--game-highlight-color);
+  display: block;
+  pointer-events: none;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(
+    0 calc(100% - var(--border-width)),
+    0 100%,
+    100% 100%,
+    100% var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width)) calc(100% - var(--border-width)),
+    0 calc(100% - var(--border-width))
+  );
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--game-shadow-color);
+  display: block;
+  pointer-events: none;
+}
+
+button:hover {
+  padding:  0.65rem 0 0.5rem;
+  background-color: #be0000;
+}
+
+button:hover::before {
+  background: var(--game-shadow-color);
+}
+
+button:hover::after {
+  background: var(--game-highlight-color);
+}

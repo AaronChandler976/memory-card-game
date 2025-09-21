@@ -1,19 +1,16 @@
-import { NUM_CARDS } from "../utils/game-constants";
 import "./styles/Score.css";
 
-function Score({ score, currentStreak, bestStreak }) {
-  const numCards = NUM_CARDS;
-
+function Score({ score, difficulty, currentStreak, highScore }) {
   return (
     <div className="score">
-      <div className="score-display">
+      <div className="score-display pixel-border-inner">
         <span>
-          {score}/{numCards}
+          {score}/{difficulty.cards}
         </span>
       </div>
       <div className="score-info">
-        <span>Score: {currentStreak}</span>
-        <span>Highscore: {bestStreak}</span>
+        <span>Streak: {currentStreak}</span>
+        <span>Highscore: {highScore[difficulty.name]}</span>
       </div>
     </div>
   );

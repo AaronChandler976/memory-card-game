@@ -1,21 +1,44 @@
 .game {
-  --board-padding: 5px;
-  --board-border-width: 1px;
+  --pixel-border-width: 4px;
+  --board-padding: calc(var(--pixel-border-width) + var(--inner-padding));
+  --card-width: 9rem;
   --card-spacing: var(--board-padding);
-  --card-width: 10rem;
-  --board-width: calc(
-    4 * var(--card-width) + 2 * var(--board-padding) + 2 *
-      var(--board-border-width) + 3 * var(--card-spacing)
-  );
-  --game-border-radius: 5px;
+  --board-background-color: #faf3dd;
 }
 
 .board {
-  width: var(--board-width);
-  border: var(--board-border-width) solid black;
-  border-radius: var(--game-border-radius);
-  padding: var(--board-padding);
-  display: flex;
+  display: grid;
   gap: var(--card-spacing);
-  flex-wrap: wrap;
+}
+
+.board:has(:nth-last-child(6)) {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.board:has(:nth-last-child(9)) {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.board:has(:nth-last-child(12)) {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.board:has(:nth-last-child(16)) {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.pixel-border-inner {
+  background-color: var(--board-background-color);
+}
+
+.pixel-border-inner::before {
+  background-color: #850000;
+}
+
+.pixel-border-inner::after {
+  background-color: #ff7575;
 }

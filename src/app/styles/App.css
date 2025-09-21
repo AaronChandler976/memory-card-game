@@ -1,16 +1,13 @@
 @font-face {
-  font-family: "Consolas";
-  src: url("../../assets/fonts/Pokemon_Pixel_Font_Regular/");
-}
-@font-face {
   font-family: "Medodica";
-  src: url("../../assets/fonts/Medodica_Regular/");
+  src: url("../../assets/fonts/Medodica_Regular/medodica.regular.otf");
 }
 
 .app {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: "Medodica", monospace;
-  overflow: scroll;
+  overflow: auto;
 }
