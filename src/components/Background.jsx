@@ -8,7 +8,7 @@ function Background() {
         __html: `
         <video muted="muted" autoplay loop>
         <source
-        src="./src/assets/video/Horizon_Slow_Wide.mp4"
+        src="./src/assets/video/Horizon_Bike_Background.mp4"
         type="video/mp4"
         />
         </video>

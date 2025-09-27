@@ -7,7 +7,6 @@ import { getNewPokemonId, shuffleArray } from "../utils/utils";
 import "./styles/Game.css";
 import Button from "./Button";
 import Difficulty from "./Difficulty";
-import Egg from "./Egg";
 
 const initDifficulty = DIFFICULTY[Object.keys(DIFFICULTY)[1]];
 
@@ -195,9 +194,7 @@ function Game() {
               </div>
             )}
           </div>
-          {isGameStart && (
-            <Egg difficulty={difficulty} selectedIds={selectedIds} />
-          )}
+
         </div>
       </div>
     </div>
