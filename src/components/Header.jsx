@@ -1,4 +1,4 @@
-import PokemonLogo from "../assets/images/International_Pokémon_logo.svg";
+import PokemonLogo from "/assets/images/International_Pokémon_logo.svg";
 import "./styles/Header.css";
 
 function Header() {

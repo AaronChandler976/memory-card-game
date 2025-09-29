@@ -34,7 +34,7 @@ function Card({ pokemon, handleClickCard, selectedIds, status, isFlipped }) {
           <span>{pokemon.name}</span>
         </div>
         <div className="card-back">
-          <img src="./src/assets/images/card_back.png" alt="card back" />
+          <img src="/assets/images/card_back.png" alt="card back" />
         </div>
       </div>
     </div>
